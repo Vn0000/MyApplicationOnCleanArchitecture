@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">My Application on clean architecture</string>
+    <string name="firstTitle">Мой первый проект на git hub</string>
 </resources>
