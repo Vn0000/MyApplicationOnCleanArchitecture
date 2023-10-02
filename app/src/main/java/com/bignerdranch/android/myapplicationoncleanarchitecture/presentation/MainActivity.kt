@@ -1,7 +1,8 @@
-package com.bignerdranch.android.myapplicationoncleanarchitecture
+package com.bignerdranch.android.myapplicationoncleanarchitecture.presentation
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.bignerdranch.android.myapplicationoncleanarchitecture.R
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
