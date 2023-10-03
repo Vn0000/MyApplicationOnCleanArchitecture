@@ -1,7 +1,7 @@
 package com.bignerdranch.android.myapplicationoncleanarchitecture.domain
 
 class GetShopListUseCase (private val shopListRepository: ShopListRepository) {
-    fun getShopList(): List<ShopItam> {
+    fun getShopList(): List<ShopItem> {
         return shopListRepository.getShopList()
     }
 }

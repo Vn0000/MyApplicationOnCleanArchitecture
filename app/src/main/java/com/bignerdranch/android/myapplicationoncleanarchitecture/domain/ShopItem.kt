@@ -1,6 +1,6 @@
 package com.bignerdranch.android.myapplicationoncleanarchitecture.domain
 
-data class ShopItam (
+data class ShopItem (
     val name: String,
     val count: Int,
     val enabled: Boolean,

@@ -1,9 +1,9 @@
 package com.bignerdranch.android.myapplicationoncleanarchitecture.domain
 
 interface ShopListRepository {
-    fun addShopItem(shopItam: ShopItam)
-    fun deleteShopItem (shopItam: ShopItam)
-    fun editShopItem(shopItem: ShopItam)
-    fun getShopItem(shopItemId: Int): ShopItam
-    fun getShopList(): List<ShopItam>
+    fun addShopItem(shopItem: ShopItem)
+    fun deleteShopItem (shopItem: ShopItem)
+    fun editShopItem(shopItem: ShopItem)
+    fun getShopItem(shopItemId: Int): ShopItem
+    fun getShopList(): List<ShopItem>
 }

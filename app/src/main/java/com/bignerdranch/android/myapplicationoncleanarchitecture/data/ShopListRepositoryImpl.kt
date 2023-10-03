@@ -1,35 +1,41 @@
 package com.bignerdranch.android.myapplicationoncleanarchitecture.data
 
-import com.bignerdranch.android.myapplicationoncleanarchitecture.domain.ShopItam
+import com.bignerdranch.android.myapplicationoncleanarchitecture.domain.ShopItem
 import com.bignerdranch.android.myapplicationoncleanarchitecture.domain.ShopListRepository
 
 object ShopListRepositoryImpl : ShopListRepository {
 
-    private val shopList = mutableListOf<ShopItam>()
+    private val shopList = mutableListOf<ShopItem>()
     private var autoIncrementId = 0
-    override fun addShopItem(shopItam: ShopItam) {
-        if (shopItam.id == ShopItam.UNDEFINED_ID) {
-            shopItam.id = autoIncrementId++
+    init {
+        for(i in 0 until 10) {
+            val item = ShopItem("Name $i", i, true)
+            addShopItem(item)
         }
-        shopList.add(shopItam)
+    }
+    override fun addShopItem(shopItem: ShopItem) {
+        if (shopItem.id == ShopItem.UNDEFINED_ID) {
+            shopItem.id = autoIncrementId++
+        }
+        shopList.add(shopItem)
     }
 
-    override fun deleteShopItem(shopItam: ShopItam) {
-        shopList.remove(shopItam)
+    override fun deleteShopItem(shopItem: ShopItem) {
+        shopList.remove(shopItem)
     }
 
-    override fun editShopItem(shopItem: ShopItam) {
+    override fun editShopItem(shopItem: ShopItem) {
         val oldElement = getShopItem(shopItem.id)
         shopList.remove(oldElement)
         addShopItem(shopItem)
     }
 
-    override fun getShopItem(shopItemId: Int): ShopItam {
+    override fun getShopItem(shopItemId: Int): ShopItem {
         return shopList.find { it.id == shopItemId }
             ?: throw java.lang.RuntimeException("Element with id $shopItemId not found")
     }
 
-    override fun getShopList(): List<ShopItam> {
+    override fun getShopList(): List<ShopItem> {
         return shopList.toList()
     }
 }
