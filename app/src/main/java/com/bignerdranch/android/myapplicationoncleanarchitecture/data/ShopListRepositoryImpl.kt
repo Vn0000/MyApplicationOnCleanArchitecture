@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.bignerdranch.android.myapplicationoncleanarchitecture.domain.ShopItem
 import com.bignerdranch.android.myapplicationoncleanarchitecture.domain.ShopListRepository
+import java.util.*
 import kotlin.random.Random
 
 object ShopListRepositoryImpl : ShopListRepository {
@@ -17,9 +18,6 @@ object ShopListRepositoryImpl : ShopListRepository {
         }
     }
     override fun addShopItem(shopItem: ShopItem) {
-        if (shopItem.id == ShopItem.UNDEFINED_ID) {
-            shopItem.id = autoIncrementId++
-        }
         shopList.add(shopItem)
         updateList()
     }
@@ -35,7 +33,7 @@ object ShopListRepositoryImpl : ShopListRepository {
         addShopItem(shopItem)
     }
 
-    override fun getShopItem(shopItemId: Int): ShopItem {
+    override fun getShopItem(shopItemId: UUID): ShopItem {
         return shopList.find { it.id == shopItemId }
             ?: throw java.lang.RuntimeException("Element with id $shopItemId not found")
     }

@@ -1,12 +1,11 @@
 package com.bignerdranch.android.myapplicationoncleanarchitecture.domain
 
+import java.util.*
+
 data class ShopItem (
     val name: String,
     val count: Int,
     var enabled: Boolean,
-    var id: Int = UNDEFINED_ID
+    val id: UUID = UUID.randomUUID()
 ) {
-    companion object {
-        const val  UNDEFINED_ID = -1
-    }
 }
