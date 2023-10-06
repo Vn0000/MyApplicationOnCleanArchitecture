@@ -1,6 +1,5 @@
 package com.bignerdranch.android.myapplicationoncleanarchitecture.presentation
 
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.bignerdranch.android.myapplicationoncleanarchitecture.data.ShopListRepositoryImpl
 import com.bignerdranch.android.myapplicationoncleanarchitecture.domain.DeleteShopItemUseCase
