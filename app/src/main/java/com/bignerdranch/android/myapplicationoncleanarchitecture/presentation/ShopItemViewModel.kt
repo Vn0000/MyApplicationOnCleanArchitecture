@@ -39,7 +39,7 @@ class ShopItemViewModel : ViewModel() {
         _shopItem.value = item
     }
 
-    fun addShopItemUseCase(inputName: String?, inputCount: String?) {
+    fun addShopItem(inputName: String?, inputCount: String?) {
         val name = parseName(inputName)
         val count = parseCount(inputCount)
         val fieldsValid = validateInput(name, count)
@@ -50,7 +50,7 @@ class ShopItemViewModel : ViewModel() {
         }
     }
 
-    fun editShopItemUseCase(inputName: String?, inputCount: String?) {
+    fun editShopItem(inputName: String?, inputCount: String?) {
         val name = parseName(inputName)
         val count = parseCount(inputCount)
         val fieldsValid = validateInput(name, count)

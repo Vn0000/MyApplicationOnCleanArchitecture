@@ -10,7 +10,6 @@ import kotlin.random.Random
 object ShopListRepositoryImpl : ShopListRepository {
     private val shopListLD = MutableLiveData<List<ShopItem>>()
     private val shopList = sortedSetOf<ShopItem>({o1, o2 -> o1.id.compareTo(o2.id)})// при изменении view оставляет его на своем месте по ID
-    private var autoIncrementId = 0
     init {
         for(i in 0 until 100) {
             val item = ShopItem("Name $i", i, Random.nextBoolean())
