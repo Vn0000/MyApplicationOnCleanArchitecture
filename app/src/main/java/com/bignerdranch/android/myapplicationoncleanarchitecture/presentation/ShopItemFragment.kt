@@ -1,7 +1,6 @@
 package com.bignerdranch.android.myapplicationoncleanarchitecture.presentation
 
 import android.content.Context
-import android.content.Intent
 import android.os.Build
 import android.os.Bundle
 import android.text.Editable
@@ -20,13 +19,9 @@ import java.util.*
 
 
 class ShopItemFragment : Fragment() {
-    @RequiresApi(Build.VERSION_CODES.TIRAMISU)
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        parsParam()
-    }
 
     private lateinit var viewModel: ShopItemViewModel
+    private lateinit var onEditingFinishedListener : OnEditingFinishedListener
 
     private lateinit var tilName: TextInputLayout
     private lateinit var tilCount: TextInputLayout
@@ -37,6 +32,20 @@ class ShopItemFragment : Fragment() {
     private var screenMode: String = MODE_UNKNOWN
     private var shopItemId: UUID? = null
 
+    @RequiresApi(Build.VERSION_CODES.TIRAMISU)
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        parsParam()
+    }
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        if (context is OnEditingFinishedListener) {
+            onEditingFinishedListener = context
+        } else {
+            throw RuntimeException ("Activity must implement OnEditingFinishedListener")
+        }
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -90,7 +99,7 @@ class ShopItemFragment : Fragment() {
             tilName.error = massage
         }
         viewModel.shouldCloseScreen.observe(viewLifecycleOwner) {
-            activity?.onBackPressed()
+            onEditingFinishedListener.onEditingFinished()
         }
     }
 
@@ -154,6 +163,10 @@ class ShopItemFragment : Fragment() {
             }
             shopItemId = args.getSerializable(SHOP_ITEM_ID, UUID::class.java)
         }
+    }
+
+    interface OnEditingFinishedListener {
+        fun onEditingFinished()
     }
 
     companion object {
